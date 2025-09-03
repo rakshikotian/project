@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Book Shelf</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+</head>
+<body>
+    
+    <header>
+        <div class="navbar">
+            <div class="nav-logo border">
+               
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='logo3.jpeg') }}" alt="Logo">
+                    <div class="logo-text">
+                         
+                        <span class="top-text">E-book</span><br>
+                        <span class="bottom-text">Shelf</span>
+                       
+                    </div>
+                
+                </div>
+                
+            </div>
+            <div class="header-right">
+            <div class="dropdown">
+            <button class="dropbtn">Browse ▼</button>
+            <div class="dropdown-content">
+                <a href="#">Romance</a>
+                <a href="#">Fantasy</a>
+                <a href="#">Historical Fiction</a>
+                <a href="#">Humor</a>
+                <a href="#">Science Fiction</a>
+                <a href="#">Non-Fiction</a>
+                <a href="#">Short Story</a>
+                <a href="#">Paranormal</a>
+                <a href="#">Horror</a>
+                <a href="#">Mystery</a>
+                <a href="#">Poetry</a>
+                <a href="#">New Adult</a>
+                <a href="#">Teen Fiction</a>
+                <a href="#">Thriller</a>
+                <a href="#">Adventure</a>
+            </div>
+        </div>
+
+        <div class="container">
+  <div class="search-box">
+    <i class="fas fa-search"></i>
+    <input type="text" placeholder="Search...">
+  </div>
+</div>
+
+        <button class="signup">Sign Up</button>
+        <button id="login_button">Login</button>
+    </div>
+        </div>
+    
+    </header>
+    <div class="merge">
+   <div class="about">
+     <p style="font-size: 35px;"><h1>Welcome to E-Book Shelf!! </h1><br>
+    Your digital companion for everything books!<br>
+    E-Book Shelf is your all-in-one platform for discovering, tracking, and enjoying books. Whether you're a casual reader or a bookworm, we help you organize your digital shelf, track your reading progress, and explore personalized book recommendations.
+    <br>
+<br>
+   Our mission is to make reading more accessible and enjoyable for everyone. With the use of advanced AI .
+Join a growing community of readers and take your reading journey to the next level!
+</p>
+    </div>
+ 
+    <div class ="content"> 
+       <img src="{{ url_for('static', filename='banner.jpeg') }}">
+    </div>
+    </div>
+
+    <section class="hero">
+  <h1>Your Personal eBook Haven</h1>
+  <p>Browse thousands of titles by genre. Save, read, and track progress.</p>
+  <br><br>
+  <div class="hero-btn">
+    <button class="browse-btn">
+        <i class="fas fa-search"></i> Browse stories
+    </button>
+</div>
+</section>
+
+    <section class="features">
+    <h2>Enhance Your Reading Journey</h2>
+    <div class="feature-container">
+        <div class="feature">
+            <span class="icon">📚</span>
+            <p>Discover New Books</p>
+        </div>
+        <div class="feature">
+            <span class="icon">📖</span>
+            <p>Track Your Reading</p>
+        </div>
+        <div class="feature">
+            <span class="icon">💬</span>
+            <p>Join the Community</p>
+        </div>
+    </div>
+</section>
+
+  <!-- Login Popup -->
+  <div class="modal" id="login-content">
+    <div class="modal-box">
+      <button class="close-btn" id="login-close">&times;</button>
+      <h2>Login</h2>
+
+      <label for="login-email">Email</label>
+      <input type="email" id="login-email" placeholder="Enter your email" required>
+
+      <label for="login-pass">Password</label>
+      <input type="password" id="login-pass" placeholder="Enter your password" required>
+
+      <button class="login-btn" id="do-login">Login</button>
+      <div class="divider">
+        <span>or</span>
+      </div>
+      <a href="#" class="forgot">Forgot Password?</a>
+      <p>Don't have an account? <a href="#" id="signup-link">Sign up</a></p>
+    </div>
+  </div>
+  
+</div>
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

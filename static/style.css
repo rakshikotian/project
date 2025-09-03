@@ -1,0 +1,330 @@
+*{
+    margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border:border-box;
+}
+html,body{margin:0;overflow-x:hidden}
+.header{position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 200px;
+    background-color: rgb(49, 3, 3);
+}
+.navbar button{
+    font-size: 16px;
+    padding: 8px 14px;
+}
+
+.logo{
+    display: flex;
+    height: 200px;
+   margin: 50px;
+   align-items: center;
+   gap: 50px;
+}
+.logo img{
+    height: 200px;
+    border: none;
+}
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.2;
+}
+     
+.top-text{
+    color: burlywood;
+    font-family:"georgia",sans-serif;
+    font-size: 70px;
+    font-weight: 700;
+    margin-top: 5px;
+}
+.bottom-text{
+    color: burlywood;
+    font-size: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-left: 10px;
+    padding-top: 0px;;
+}
+.border{
+    border:2px solid transparent;
+
+}
+.merge{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+}
+.content{
+    flex: 1;
+    max-width: 80%;
+    padding :0px;
+    text-align: right;  
+}
+.about{
+    flex: 1;
+    font-size: 20px;
+    text-align: left;
+    width: 40%;       
+    padding: 20px;
+    margin-top: 100px;
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+.hero{padding:32px 20px;background:beige;text-align:center}
+.hero-btn {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+}
+.browse-btn {
+    background-color: #c05f5f;  /* Black button */
+    color: rgb(173, 7, 7);
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s ease;
+}
+
+.browse-btn i {
+    font-size: 16px;
+}
+
+.browse-btn:hover {
+    background-color: #333;  /* Darker on hover */
+}
+
+.features {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.features h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.feature-container {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.feature {
+    text-align: center;
+    max-width: 200px;
+}
+
+.feature .icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 16px;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif,itallic;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 15px;
+    
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 200px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #4b1e1e;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #d4a373;
+    color: rgb(36, 5, 5);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Search bar */
+.search-box {
+  position: relative;
+  display: inline-block;
+  width: 300px;
+  height: 40px;
+  padding-left: 10px;
+  padding: 200px;
+}
+
+.search-box input {
+  padding: 20px 12px 8px 95px; /* space for the icon */
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.search-box i {
+  position: absolute;
+  left: 210px;
+  top: 53%;
+  transform: translateY(-90%);
+  color: #666;
+  font-size: 14px;
+}
+
+
+#login_button {
+  background: white;
+  color: #007bff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+/* Modal hidden by default */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px); /* Background blur */
+  background-color: rgba(134, 68, 68, 0.4); /* Slight dark overlay */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal visible */
+.modal.show_login {
+  display: flex;
+}
+
+/* Modal box */
+.modal-box {
+  background:#fffefe;
+  padding: 30px;
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: relative;
+}
+.modal-box label{
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+h2{
+    margin-bottom: 20px;
+}
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.divider span {
+  background: #fff;
+  padding: 0 10px;
+  font-size: 14px;
+  color: #999;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #ccc;
+}
+/* Inputs */
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Login button */
+.login-btn {
+  background: #02162c;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background: #dfc79c;
+}
+.forgot{
+    display:block;
+    margin: 10px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+
+
