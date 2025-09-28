@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ book.title }} - Details
+{% endblock %}
+
+{% block content %}
+<div class="book-details">
+    <h2>{{ book.title }}</h2>
+    <p><strong>Author:</strong> {{ book.author }}</p>
+    <p><strong>Genre:</strong> {{ book.genre }}</p>
+    <p><strong>Description:</strong></p>
+    <p>{{ book.description }}</p>
+    <a href="{{ url_for('add_to_shelf', book_id=book.id) }}" class="btn btn-primary">Add to Shelf</a>
+    <a href="{{ url_for('read', book_id=book.id) }}" class="btn btn-success">Read</a>
+</div>
+{% endblock %}
+

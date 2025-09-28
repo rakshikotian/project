@@ -1,41 +1,55 @@
-const loginButton = document.getElementById('login_button');
-const loginClose = document.getElementById('login-close');
-const loginContent = document.getElementById('login-content');
-const doLogin = document.getElementById('do-login');
-const signupLink = document.getElementById('signup-link');
+// ===== Get Elements =====
+const loginModal = document.getElementById("login-content");
+const signupModal = document.getElementById("signup-content");
 
-// Show modal
-loginButton.addEventListener('click', () => {
-  loginContent.classList.add('show_login');
-});
+const loginBtn = document.getElementById("login_button");   // navbar login button
+const signupBtn = document.getElementById("signup_button"); // navbar signup button (if you have one)
 
-// Hide modal on close
-loginClose.addEventListener('click', () => {
-  loginContent.classList.remove('show_login');
-});
+const loginClose = document.getElementById("login-close");
+const signupClose = document.getElementById("signup-close");
+
+// ===== Open / Close Functions =====
+function openLogin() {
+   document.querySelectorAll(".arrow").forEach(a => a.classList.add("blur"));
+  signupModal.classList.remove("show_signup"); // hide signup if open
+  loginModal.classList.add("show_login");
+}
+
+function closeLogin() {
+   document.querySelectorAll(".arrow").forEach(a => a.classList.remove("blur"));
+  loginModal.classList.remove("show_login");
+}
+
+function openSignup() {
+  document.querySelectorAll(".arrow").forEach(a => a.classList.add("blur"));
+  loginModal.classList.remove("show_login"); // hide login if open
+  signupModal.classList.add("show_signup");
+}
+
+function closeSignup() {
+  document.querySelectorAll(".arrow").forEach(a => a.classList.remove("blur"));
+  signupModal.classList.remove("show_signup");
+}
+
+// ===== Event Listeners =====
+// Navbar buttons
+if (loginBtn) {
+  loginBtn.addEventListener("click", openLogin);
+}
+if (signupBtn) {
+  signupBtn.addEventListener("click", openSignup);
+}
+
+// Close buttons
+loginClose.addEventListener("click", closeLogin);
+signupClose.addEventListener("click", closeSignup);
 
 // Close if clicking outside modal box
-loginContent.addEventListener('click', (e) => {
-  if (e.target === loginContent) {
-    loginContent.classList.remove('show_login');
-  }
+window.addEventListener("click", (e) => {
+  if (e.target === loginModal) closeLogin();
+  if (e.target === signupModal) closeSignup();
 });
 
-// Login action
-doLogin.addEventListener('click', () => {
-  const email = document.getElementById('login-email').value;
-  const pass = document.getElementById('login-pass').value;
-
-  if (email && pass) {
-    alert(`Logging in with Email: ${email}`);
-    loginContent.classList.remove('show_login');
-  } else {
-    alert('Please enter both email and password.');
-  }
-});
-
-// Sign up action
-signupLink.addEventListener('click', (e) => {
-  e.preventDefault();
-  alert('Redirecting to signup page...');
-});
+// ===== Removed form handling via JS =====
+// The forms will be submitted to PHP scripts directly,
+// so you no longer need to handle form submissions here.

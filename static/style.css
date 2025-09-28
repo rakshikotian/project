@@ -12,7 +12,7 @@ html,body{margin:0;overflow-x:hidden}
     align-items: center;
     padding: 0 20px;
     height: 200px;
-    background-color: rgb(49, 3, 3);
+    background-color:#cddefa;
 }
 .navbar button{
     font-size: 16px;
@@ -38,14 +38,14 @@ html,body{margin:0;overflow-x:hidden}
 }
      
 .top-text{
-    color: burlywood;
+    color: rgb(0, 10, 102);
     font-family:"georgia",sans-serif;
     font-size: 70px;
     font-weight: 700;
     margin-top: 5px;
 }
 .bottom-text{
-    color: burlywood;
+    color: rgb(7, 0, 112);
     font-size: 40px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     padding-left: 10px;
@@ -62,50 +62,31 @@ html,body{margin:0;overflow-x:hidden}
     gap: 20px;
     padding: 20px;
 }
-.content{
-    flex: 1;
-    max-width: 80%;
-    padding :0px;
-    text-align: right;  
-}
+
 .about{
     flex: 1;
-    font-size: 20px;
-    text-align: left;
+    
+    text-align: center;
     width: 40%;       
     padding: 20px;
     margin-top: 100px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     
 }
-.hero{padding:32px 20px;background:beige;text-align:center}
-.hero-btn {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center; /* Centers horizontally */
+.about h1{
+    font-size: 76px;
+    color:rgb(21, 10, 68);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.browse-btn {
-    background-color: #c05f5f;  /* Black button */
-    color: rgb(173, 7, 7);
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 25px;
-    padding: 10px 25px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: 0.3s ease;
+.about p{
+   font-size: 30px;
+    color: rgb(194, 218, 255);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+  .hero-section{
+   background-color: #8ca9e0;
+  }
 
-.browse-btn i {
-    font-size: 16px;
-}
-
-.browse-btn:hover {
-    background-color: #333;  /* Darker on hover */
-}
 
 .features {
     text-align: center;
@@ -143,86 +124,21 @@ html,body{margin:0;overflow-x:hidden}
     font-family: Verdana, Geneva, Tahoma, sans-serif,itallic;
 }
 
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropbtn {
-    background-color: transparent;
-    color: white;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 10px 15px;
-    
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #fff;
-    min-width: 200px;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: #4b1e1e;
-    padding: 10px;
-    display: block;
-    text-decoration: none;
-}
-
-.dropdown-content a:hover {
-    background-color: #d4a373;
-    color: rgb(36, 5, 5);
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Search bar */
-.search-box {
-  position: relative;
-  display: inline-block;
-  width: 300px;
-  height: 40px;
-  padding-left: 10px;
-  padding: 200px;
-}
-
-.search-box input {
-  padding: 20px 12px 8px 95px; /* space for the icon */
-  border-radius: 20px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
-
-.search-box i {
-  position: absolute;
-  left: 210px;
-  top: 53%;
-  transform: translateY(-90%);
-  color: #666;
-  font-size: 14px;
-}
 
 
 #login_button {
-  background: white;
-  color: #007bff;
+  background: rgb(39, 48, 122);
+  color: #aacaec;
   border: none;
-  padding: 8px 12px;
+  padding: 15px 32px;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 12px;
+  font-size: 30px;
+}
+#login_button:hover {
+  background: #02162c;
+  color: white;
 }
 
 /* Modal hidden by default */
@@ -231,12 +147,12 @@ html,body{margin:0;overflow-x:hidden}
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 90px;
+  height: 80px;
   backdrop-filter: blur(6px); /* Background blur */
-  background-color: rgba(134, 68, 68, 0.4); /* Slight dark overlay */
-  justify-content: center;
-  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4); /* Slight dark overlay */
+  justify-content: right;
+  align-items:right;
   z-index: 1000;
 }
 
@@ -244,13 +160,19 @@ html,body{margin:0;overflow-x:hidden}
 .modal.show_login {
   display: flex;
 }
+.modal p{
+  font-size: 25px;
+}
+.modal.show_signup {
+  display: flex;
+}
 
 /* Modal box */
 .modal-box {
-  background:#fffefe;
-  padding: 30px;
+  background: #a6caff;
+  padding: 50px;
   border-radius: 10px;
-  width: 350px;
+  width: 450px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
   text-align: center;
   position: relative;
@@ -259,7 +181,7 @@ html,body{margin:0;overflow-x:hidden}
     display: block;
     text-align: left;
     margin-bottom: 5px;
-
+    font-size: 30px;
 }
 
 /* Close button */
@@ -299,32 +221,115 @@ h2{
 /* Inputs */
 input {
   width: 100%;
-  padding: 10px;
+  padding: 20px;
   margin: 8px 0;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
+  font-size: 20px;
 }
 
 /* Login button */
 .login-btn {
   background: #02162c;
   color: white;
-  padding: 10px;
+  padding: 20px;
   border: none;
   border-radius: 5px;
-  width: 100%;
+  width: 110%;
   cursor: pointer;
+  font-size: 20px;
 }
 
 .login-btn:hover {
-  background: #dfc79c;
+  background: #adbccf;
 }
 .forgot{
     display:block;
     margin: 10px 0;
-    font-size: 14px;
+    font-size: 24px;
     color: #333;
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px); /* blur effect */
+  background-color: rgba(109, 105, 105, 0.4);
+  font-size: 20px;
+}
 
+.modal-content {
+  background: #e6dada;
+  margin: 10% auto;
+  padding: 40px;
+  border-radius: 10px;
+  width: 450px;
+  font-size: 10px;
+}
+ .slider {
+      width: 900px;
+      height: 450px;
+      margin: 5px auto
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+    .slides {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 1s ease-in-out; 
+    }
+     .slides img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      margin: auto; 
+    }
 
+       /* Arrows */
+    .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  user-select: none;
+  z-index: 10;
+}
+
+.arrow.left { left: 15px; }   /* closer to left edge */
+.arrow.right { right: 1100px; } /* closer to right edge */
+.arrow.blur {
+  filter: blur(9px);
+}
+    /* Dots */
+    .dots {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+    }
+    .dot {
+      height: 12px;
+      width: 12px;
+      margin: 0 5px;
+      display: inline-block;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+      cursor: pointer;
+    }
+    .dot.active {
+      background: white;
+    }

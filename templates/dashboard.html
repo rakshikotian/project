@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            transition: background-color 0.3s, color 0.3s;
+        }
+       
+.sidebar {
+    width: 215px;
+    background-color:#e6f0ff;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
+     height: calc(100vh - 60px); /* Full height minus navbar */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    top: 130px;
+    left: 0;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+body.dark-mode .sidebar {
+    background-color: #464343;
+    color: #ddd;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 2px;
+    margin: 20px;
+}
+.sidebar ul li {
+    margin-bottom: 35px;
+}
+.sidebar ul li a {
+    text-decoration: none;
+    color: #111111;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+}
+.sidebar ul li a:hover {
+    background-color: #f7ba9e;
+    border-radius: 5px;
+}
+body.dark-mode .sidebar a {
+    color: #ddd; /* Change link color in dark mode */
+}
+
+body.dark-mode .sidebar ul li a:hover {
+    background-color: #333;
+}
+
+.sidebar ul li a i {
+    width: 20px; /* Icon size */
+    text-align: center;
+}
+.bottom-links {
+    margin-top: auto;
+     width: 100%; 
+     padding: 10px 0 0 0;  /* Only top padding if needed */
+     
+}
+.bottom-links hr.sidebar-divider {
+    border: none;
+    border-top: 5px solid #000;
+    margin: 5px;
+    width: 120px;
+}
+.bottom-links li {
+    margin: 0;
+    padding: 0 20px; /* Add horizontal padding here if needed */
+}
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color:#cddefa;
+            padding: 40px 20px;
+            position:fixed;
+            top: 0;
+            left: 0;
+            width:98%;
+            height: 60px;
+            z-index: 1000;
+            color:#000;
+            transition: background-color 0.3s, color 0.3s;
+            gap: 10px;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .dark-mode-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+           
+        }
+       body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+      }
+
+       body.dark-mode .navbar {
+              background-color: #757575;
+              color: #fff;
+         }
+/* Light mode */
+.profile-content a {
+    color: #333;
+}
+
+/* Dark mode */
+body.dark .profile-content a {
+    color: #ddd;
+}
+#dark-mode-toggle {
+        margin-right: 100px;
+        cursor: pointer;
+         font-size: 24px;
+          width: 40px;       /* Adjust width if necessary */
+    height: 40px;      /* Adjust height if necessary */
+    line-height: 40px; 
+    transition: transform 0.2s;
+    }
+    body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+#dark-mode-toggle:hover {
+    transform: scale(1.2);
+}
+.navbar-center{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+.navbar-right{
+        display: flex;
+    align-items: right;
+    margin-left: auto;
+    gap: 15px;
+    
+    }
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+             height: 60px;
+            padding: 0 10px;
+            margin-left: 30px;
+            margin-right: 60px;
+        }
+        .navbar a {
+    color: inherit; /* So it inherits from .navbar */
+    margin-right: 10px;
+}
+
+body.dark-mode .navbar a {
+    color: #fff;
+}
+        .logo img {
+           height: 130px;
+           width: auto;
+        }
+        .text {
+           display: flex;
+           margin-left: 1px; 
+           flex-direction: column;
+           line-height: 1.1;
+           font-weight: bold;
+           font-size: 36px;
+          font-family: "georgia",sans-serif;
+        }
+        .text span {
+            color: #00185a;
+            display: block;
+            font-weight: bold;
+        }
+
+        /* Dark mode */
+        body.dark-mode .text span {
+            color:#fff8f8;
+        }
+        
+       
+        .search-box {
+    width: 600px; /* Adjust as needed */
+    }
+
+        .search-box input {
+            padding:8px 60px 8px 20px;
+            border-radius: 4px;
+            border: 1px solid;
+            width: 100%;
+            font-size: 22px;
+        }
+        .search-box i {
+            position: absolute;
+            right: 620px;
+            color: #971c1c;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+       }
+       .search-box form {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+.search-box button {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+        .profile-dropdown {
+            position: relative;
+        }
+        .profile-button {
+            background: none;
+            border: 2px solid #333;
+            cursor: pointer;
+            font-weight: bold;
+            color: #ddd6d6;
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .sidebar-divider {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 0;
+    width:215px;
+}
+        .profile-content {
+            display: none;
+            position: absolute;
+            right: 0px;
+            background-color: #fff;
+            min-width: 180px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            z-index: 300;
+        }
+        .profile-dropdown:hover .profile-content {
+            display: block;
+        }
+        .profile-content a {
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+            color: #333;
+        }
+        .profile-content a:hover {
+            background-color: #f0f0f0;
+        }
+        .main-content {
+    margin-left: 215px; /* width of sidebar */
+    margin-top: 60px;   /* height of navbar */
+    padding: 50px;
+    margin-top: 100px;
+    cursor: pointer;
+}
+body.dark-mode .main-content {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Specific sections */
+body.dark-mode .featured-section h2,
+body.dark-mode .all-books-section h2 {
+    color: #5c6275;
+}
+
+body.dark-mode .featured-section p,
+body.dark-mode .all-books-section p {
+    color: #eee9e9; /* Slightly lighter for readability */
+}
+.featured-section h2{ display: inline-block;
+    background-color: #ffffff;
+    border: 2px solid #1976D2;
+    color: #1976D2;
+    padding: 10px 18px;
+    font-weight: bold;
+    position: relative;
+    margin: 30px 0;
+    font-family: Arial, sans-serif;
+    }
+
+.featured-section h2,
+.all-books-section h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #2b2a2a;
+}
+
+.featured-books {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+.featured-books .book-item {
+    min-width: 150px;
+    text-align: center;
+}
+.book-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgb(190, 212, 228);
+}
+body.dark-mode .book-item {
+    background: #2a2a2a;
+    color: #ddd;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.book-item img {
+    width: 150px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.book-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+  z-index: 2;
+}
+
+
+.book-item:hover {
+  animation: pop 0.3s ease forwards;
+}
+
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.08); }
+  100% { transform: scale(1.05); }
+}
+
+.book-item p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+}
+body.modal-open .main-content,
+    body.modal-open .sidebar,
+    body.modal-open .navbar {
+        filter: blur(5px);
+        pointer-events: none; /* Optional: prevent interaction with background */
+    }
+    /* Modal default */
+.modal-content {
+  background: #c4aeae;
+  color: #000;
+}
+
+/* Dark mode modal */
+body.dark-mode .modal-content {
+  background: #8b7676;  /* Dark gray background */
+  color: #120b2c;       /* Light text */
+}
+
+/* Fix for modal links (like Read Book button) */
+body.dark-mode #modal-pdf {
+  background: #abd1ff; /* Slightly lighter blue */
+  color: #6b2727;
+}
+.category-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: 0.3s;
+}
+.category-btn:hover {
+  background: #6f89a7;
+  color: rgb(161, 92, 92);
+  transform: scale(1.1);
+}
+#categories-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+#category-books {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+#category-books .book-item {
+  text-align: center;
+}
+#category-books .book-item img {
+  width: 150px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.reading-tracker-section {
+  padding: 20px;
+}
+.reading-tracker-section h2 {
+  font-size: 30px;
+  color: #070616;
+  border: 2px solid #15255a;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 6px 14px;
+}
+
+.tracker-block {
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+
+.tracker-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.tracker-book {
+  background:rgb(189, 193, 226);
+  padding: 15px;
+  border-radius: 10px;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.tracker-book img {
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.progress-bar {
+  background: #fffafa;
+  border-radius: 10px;
+  height: 20px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #27ae60;
+  width: 0;
+}
+/* Dark mode fixes for Reading Tracker */
+body.dark-mode .reading-tracker-section {
+  background-color: #121212; /* match global dark */
+  color: #928e8e;
+}
+
+body.dark-mode .reading-tracker-section h2,
+body.dark-mode .reading-tracker-section h3 {
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+body.dark-mode .tracker-book {
+  background: #312f2f;
+  color: #e0e0e0;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .tracker-book p,
+body.dark-mode .tracker-book small {
+  color: #ccc;
+}
+
+body.dark-mode .progress-bar {
+  background: #dfd5d5;
+}
+
+body.dark-mode .progress-fill {
+  background: #27ae60; /* keep green progress visible */
+}
+
+body.dark-mode .continue-btn {
+  background: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+body.dark-mode .continue-btn:hover {
+  background: #555;
+}
+
+.profile-card {
+  width: 800px;              /* fixed width */
+  height: 400px;             /* fixed height to make it square */
+  background: #c0d0fc;
+  border-radius: 32px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;   /* center content vertically */
+  padding: 20px;
+  text-align: center;
+  gap: 10px;
+}
+body.dark-mode .profile-card {
+  background: #726c6c;
+  color: #ddd;
+}
+.profile-image img {
+  width: 90px;
+  height: 90px;
+  border-radius: 90%;
+  object-fit: cover;
+  margin-bottom: 50px;
+}
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #0b1b2c;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 58px;
+}
+.profile-info h2 {
+  margin: 5px 0;
+  font-size: 40px;
+  color: #000000;
+  font-style: italic bold;
+}
+.profile-info p{
+  margin: 2px 0;
+  font-size: 24px;
+  color: #16285c;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.profile-wrapper {
+  display: flex;
+  justify-content: center;  /* horizontally center */
+  align-items: center;      /* vertically center (optional if you want middle of screen) */
+  min-height: 60vh;         /* pushes it down to center vertically */
+}
+body.dark-mode-button .profile-wrapper {
+  background-color: #121212;
+  color: #ddd;
+}
+.favourite-section {
+  margin-top: 40px;
+  width: 90%;
+  max-width: 1000px;
+  margin-left: 70px;
+}
+.favourite-section h3 {
+  margin-bottom: 15px;
+  font-size: 26px;
+  color: #330101;
+}
+
+.favourite-books {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.fav-book-card {
+  background: #c9c6c6;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  text-align: center;
+}
+
+.fav-book-card:hover {
+  transform: translateY(-5px);
+}
+
+.fav-book-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.fav-book-info {
+  padding: 10px;
+}
+
+.fav-book-info h4 {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #222;
+}
+
+.fav-book-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Dark Mode */
+body.dark-mode .profile-card {
+  background: #1e1e1e;
+}
+
+body.dark-mode .profile-info h2,
+body.dark-mode .profile-info p,
+body.dark-mode .favourite-section h3,
+body.dark-mode .fav-book-info h4,
+body.dark-mode .fav-book-info p {
+  color: #ddd;
+}
+
+body.dark-mode .fav-book-card {
+  background: #504f4f;
+}
+
+
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-left">
+        <a href="#" class="logo">
+            <img src="{{ url_for('static', filename='logolight.png') }}" alt="My Book Logo" height="50">
+        </a>
+        <div class="text">
+            <span>E Book</span>
+            <span>Shelf</span>
+        </div>
+    </div>
+
+    <div class="navbar-center">
+        <div class="search-box">
+          <form id="search-form" onsubmit="return false;">
+        <input type="text" id="book-search" placeholder="Search books...">
+        <button type="submit"><i class="fas fa-search"></i></button>
+    </form>
+</div>
+    </div>
+
+    <div class="navbar-right">
+        <button id="dark-mode-toggle" title="Toggle dark/light theme">🌙</button>
+        <div class="profile-dropdown">
+            <button class="profile-button">{{ username.split('@')[0][:1].upper() }}</button>
+            <!-- Dropdown content if needed -->
+        </div>
+    </div>
+</nav>
+
+
+        <div class="sidebar">
+            <ul>
+             <li><a href="#" id="home-link"><i class="fas fa-home"></i> Home</a></li>
+             <li><a href="#" id="my-shelf-link"><i class="fas fa-book"></i> My Shelf</a></li>
+             <li><a href="#" id="explore-link"><i class="fas fa-compass"></i> Explore Books</a></li>
+             <li><a href="#" id="reading-tracker-link"><i class="fas fa-chart-line"></i> Reading Tracker</a></li>
+             
+            </ul>
+             <ul class="bottom-links">
+                <hr class="sidebar-divider">
+        <li><a href="#" id="profile-link"><i class="fas fa-user"></i> Profile</a></li>
+        <li>
+  <a href="{{ url_for('logout') }}" id="logout-link">Logout</a>
+</li>
+    </ul>
+        </div>
+        
+   <div class="main-content">
+
+    <!-- Featured Books Section -->
+    <div class="featured-section" id="featured-section">
+        <h2 id="section-title">Featured Books</h2>
+        <div class="featured-books" id="featured-books">
+            {% for book in featured_books %}
+             <div class="book-item" onclick="openBookModal(this)" 
+                 data-id="{{ book.book_id }}"
+                 data-title="{{ book.title }}" 
+                 data-author="{{ book.author }}" 
+                 data-genre="{{ book.genre }}" 
+                 data-description="{{ book.description }}" 
+                 data-cover="{{ url_for('static', filename=book.cover_url) }}" 
+                 data-pdf="{{ url_for('static', filename=book.pdf_url) }}">
+                <img src="{{ url_for('static', filename=book.cover_url) }}" alt="{{ book.title }}">
+                <p>{{ book.title }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+    <!-- All Books Grid -->
+    <div class="all-books-section">
+        <h2>All Books</h2>
+        <div class="books-grid" id="books-grid">
+            {% for book in books %}
+            <div class="book-item" onclick="openBookModal(this)" 
+             data-id="{{ book.book_id }}"
+         data-title="{{ book.title }}" 
+         data-author="{{ book.author }}" 
+         data-genre="{{ book.genre }}" 
+         data-description="{{ book.description }}" 
+         data-cover="{{ url_for('static', filename=book.cover_url) }}" 
+         data-pdf="{{ url_for('static', filename=book.pdf_url) }}">
+                <img src="{{ url_for('static', filename=book.cover_url) }}" alt="{{ book.title }}">
+                <p>{{ book.title }}</p>
+               <button 
+  class="fav-btn" 
+  data-id="{{ book.book_id }}" 
+  onclick="toggleFavourite(event, '{{ book.book_id }}')">
+  ♡
+</button>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+   <div class="reading-tracker-section" id="reading-tracker" style="display:none;">
+  <h2>📊 Reading Tracker</h2>
+
+  <!-- Books in Progress -->
+  <div class="tracker-block">
+    <h3>📖 Books in Progress</h3>
+    <div id="progress-books" class="tracker-grid"></div>
+  </div>
+
+  <!-- Recently Read -->
+  <div class="tracker-block">
+    <h3>🕒 Recently Read</h3>
+    <div id="recent-books" class="tracker-grid"></div>
+  </div>
+
+  <!-- Completed Books -->
+  <div class="tracker-block">
+    <h3>✅ Completed Books</h3>
+    <div id="completed-books" class="tracker-grid"></div>
+  </div>
+  <div id="continue-reading" class="continue-section"></div>
+</div>
+<div class="profile-container" id="profile-section" 
+     style="display:none; position:absolute; top:100px; left:0px; width:100%; min-height:90vh; background:#f9f9f9;">
+<button onclick="closeProfile()" 
+        style="margin-top:90px;padding:8px 16px;background:#9da5d4;border:none;border-radius:6px;cursor:pointer;margin-left: 30px;">
+  ← Back to Dashboard
+</button>
+
+<div class="profile-wrapper">
+  <div class="profile-card">
+    
+    <!-- Left: Profile Picture -->
+    <div class="profile-image">
+      {% if user and user.profile_pic_url %}
+        <img src="{{ url_for('static', filename='uploads/' ~ user.profile_pic_url) }}"
+             alt="Profile Picture">
+      {% else %}
+        <div class="profile-avatar">{{ user_initial }}</div>
+      {% endif %}
+    </div>
+
+    <!-- Right: Profile Info -->
+    <div class="profile-info">
+      <h2>{{ username }}</h2>
+      <p><strong>Email:</strong> {{ email }}</p>
+      {% if user and user.bio %}
+        <p><em>{{ user.bio }}</em></p>
+      {% endif %}
+      {% if user and user.location %}
+        <p>📍 {{ user.location }}</p>
+      {% endif %}
+
+      <button onclick="openEditProfile()" 
+              style="margin-top:10px;padding:6px 12px;border:none;border-radius:6px;
+                     background:#1976D2;color:#fff;cursor:pointer;">
+        ✏️ Edit Profile
+      </button>
+    </div>
+    
+  </div>
+</div>
+
+
+
+  <!-- Edit Profile Modal -->
+<div id="edit-profile-modal" 
+     style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+            background:rgba(0,0,0,0.6);align-items:center;justify-content:center;
+            z-index:1200;">
+  <div style="background:#fff;padding:25px;border-radius:12px;max-width:400px;width:90%;position:relative;">
+    <span onclick="closeEditProfile()" 
+          style="position:absolute;top:10px;right:15px;font-size:22px;cursor:pointer;">&times;</span>
+
+    <h2>Edit Profile</h2>
+    <form method="POST" action="{{ url_for('edit_profile') }}" enctype="multipart/form-data">
+      <label>Username</label>
+      <input type="text" value="{{ username }}" disabled 
+             style="width:100%;padding:8px;margin-bottom:10px;background:#f0f0f0;">
+
+      <label>Email</label>
+      <input type="email" value="{{ email }}" disabled 
+             style="width:100%;padding:8px;margin-bottom:10px;background:#f0f0f0;">
+
+      <label>Bio</label>
+      <textarea name="bio" style="width:100%;padding:8px;margin-bottom:10px;">{{ user.bio or '' }}</textarea>
+
+      <label>Location</label>
+      <input type="text" name="location" value="{{ user.location or '' }}" 
+             style="width:100%;padding:8px;margin-bottom:10px;">
+
+      <label>Profile Picture</label>
+      <input type="file" name="profile_pic" style="margin-bottom:10px;">
+
+      <button type="submit" 
+              style="margin-top:12px;padding:8px 16px;background:#1976D2;color:#fff;
+                     border:none;border-radius:6px;cursor:pointer;">
+        Save Changes
+      </button>
+    </form>
+  </div>
+</div>
+
+
+  <!-- Favourite Books Section -->
+  <div class="favourite-section">
+    <h3>⭐ Favourite Books</h3>
+    <div class="favourite-books">
+      {% if favourite_books and favourite_books|length > 0 %}
+        {% for book in favourite_books %}
+        <div class="fav-book-card" onclick="openBook('{{ book.pdf_url }}')">
+          <img src="{{ url_for('static', filename=book.cover_url) }}" alt="{{ book.title }}">
+          <div class="fav-book-info">
+            <h4>{{ book.title }}</h4>
+            <p>{{ book.author }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p>No favourites yet.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+  function openBook(pdfUrl) {
+    window.open(pdfUrl, "_blank"); // Opens book in new tab
+  }
+</script>
+
+</div>
+<!-- Book Modal -->
+<div id="book-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
+     background:rgba(0,0,0,0.6); align-items:center; justify-content:center; z-index:1000;">
+  
+  <div class="modal-content" style="background:#b7eaff; padding:30px; border-radius:12px; max-width:800px; width:90%; position:relative; font-size: 25px;">
+    <!-- Close button -->
+    <span id="modal-close" style="position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer;">&times;</span>
+    
+    <!-- Book Cover -->
+    <img id="modal-cover" src="" alt="Book Cover" style="max-width:150px; display:block; margin:0 auto 15px;">
+    
+    <!-- Title -->
+    <h2 id="modal-title" style="text-align:center; margin-bottom:10px; font-size: 30px;"></h2>
+    
+    <!-- Author & Genre -->
+    <p><strong>Author:</strong> <span id="modal-author"></span></p>
+    <p><strong>Genre:</strong> <span id="modal-genre"></span></p>
+    
+    <!-- Description -->
+    <p id="modal-description" style="margin-top:10px;"></p>
+    
+    <!-- PDF Link -->
+    <a id="modal-pdf" href="#" target="_blank" 
+       style="display:inline-block; margin-top:15px; padding:10px 15px; background:#1b2d41; color:#dbdbdb; text-decoration:none; border-radius:5px;">
+       📖 Read Book
+    </a>
+    <button id="add-to-shelf" 
+        style="display:inline-block; margin-top:15px; padding:10px 15px; 
+               background:#27ae60; color:#fff; border:none; border-radius:5px; 
+               cursor:pointer; font-size:16px;">
+    ➕ Add to Shelf
+</button>
+<p id="modal-feedback" style="margin-top:10px; color:green; display:none;"></p>
+  </div>
+  <!-- PDF Reader Modal -->
+<!-- PDF Reader Modal -->
+<div id="pdf-reader-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+     background:rgba(0,0,0,0.9); align-items:center; justify-content:center; z-index:1100; flex-direction:column; overflow-y:auto;">
+  
+  <span id="pdf-close" style="color:white; font-size:28px; position:absolute; top:20px; right:30px; cursor:pointer;">&times;</span>
+   <!-- Loading Indicator -->
+  <div id="loading-indicator" style="color:white; font-size:18px; margin-bottom:10px; display:none;">
+    Loading PDF, please wait...
+  </div>
+  <div style="color:rgb(150, 146, 146); margin-bottom:10px;">
+    <button id="zoom-out" style="padding:5px 10px; font-size:16px;">➖ Zoom Out</button>
+    <button id="zoom-in" style="padding:5px 10px; font-size:16px;">➕ Zoom In</button>
+    <span style="margin-left:10px;">Zoom: <span id="zoom-level">100%</span></span>
+  </div>
+  
+  <div id="pdf-container" style="width:90%; max-height:80%; overflow-y:auto; background:#fff; padding:10px; border-radius:8px;"></div>
+  <p style="color:white; margin-bottom:10px;">
+  Page <span id="page-num">1</span> of <span id="page-count">0</span> (<span id="progress-percent">0</span>% read)
+</p>
+
+</div>
+
+
+    <script>
+        const toggleButton = document.getElementById('dark-mode-toggle');
+        const logoImage = document.querySelector('.logo img'); // Selects the logo image
+        toggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                toggleButton.textContent = '☀️';
+                logoImage.src = "{{ url_for('static', filename='logod3.png') }}"
+            } else {
+                toggleButton.textContent = '🌙';
+                 logoImage.src="{{ url_for('static', filename='logolight.png') }}" 
+            }
+        });
+    </script>
+   <script>
+/* GLOBAL */
+let currentBookId = null;   // must be global
+
+/* open modal and fill data */
+function openBookModal(el) {
+  const modal = document.getElementById('book-modal');
+  const title = document.getElementById('modal-title');
+  const cover = document.getElementById('modal-cover');
+  const pdf = document.getElementById('modal-pdf');
+  const author = document.getElementById('modal-author');
+  const genre = document.getElementById('modal-genre');
+  const description = document.getElementById('modal-description');
+  const feedback = document.getElementById('modal-feedback');
+  const addBtn = document.getElementById('add-to-shelf');
+
+  // load values from dataset
+  currentBookId = el.dataset.id || null;
+  title.textContent = el.dataset.title || '';
+  cover.src = el.dataset.cover || '';
+  pdf.href = el.dataset.pdf || '#';
+  author.textContent = el.dataset.author || '';
+  genre.textContent = el.dataset.genre || '';
+  description.textContent = el.dataset.description || '';
+
+  // reset feedback / button
+  feedback.style.display = 'none';
+  addBtn.disabled = false;
+  addBtn.innerText = '➕ Add to Shelf';
+
+  modal.style.display = 'flex';
+}
+
+/* close modal */
+document.getElementById('modal-close').addEventListener('click', () => {
+  document.getElementById('book-modal').style.display = 'none';
+});
+
+/* Add to Shelf - Post to server */
+async function addToShelf(bookId) {
+  if (!bookId) {
+    alert('Book id missing.');
+    return;
+  }
+
+  try {
+    const res = await fetch('/add_to_shelf', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ book_id: bookId })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.message || 'Server error');
+      return;
+    }
+
+    if (data.success) {
+      // update UI in modal
+      const addBtn = document.getElementById('add-to-shelf');
+      addBtn.innerText = '✅ Added';
+      addBtn.disabled = true;
+      const feedback = document.getElementById('modal-feedback');
+      feedback.style.display = 'block';
+      feedback.textContent = data.message || 'Added to shelf';
+
+      // if user currently viewing My Shelf, refresh it
+      if (document.getElementById('section-title').textContent.trim() === 'My Shelf') {
+        loadMyShelf();
+      }
+    } else {
+      alert(data.message || 'Could not add to shelf');
+    }
+  } catch (err) {
+    console.error('addToShelf error', err);
+    alert('Network error. Check console.');
+  }
+}
+
+
+/* load My Shelf into featured-books container */
+async function loadMyShelf() {
+  try {
+    const res = await fetch('/my_shelf');
+    if (!res.ok) {
+      console.error('my_shelf status', res.status);
+      return;
+    }
+    const json = await res.json();
+    console.log("my_shelf response:", json); 
+    const books = json.books || [];
+    const container = document.getElementById('featured-books');
+    const title = document.getElementById('section-title');
+
+    title.textContent = 'My Shelf';
+    container.innerHTML = '';
+
+    if (books.length === 0) {
+      container.innerHTML = '<p>No books in your shelf yet.</p>';
+      return;
+    }
+
+    books.forEach(book => {
+      const div = document.createElement('div');
+      div.className = 'book-item';
+      div.setAttribute('onclick','openBookModal(this)');
+      // dataset values:
+      div.dataset.id = book.book_id;
+      div.dataset.title = book.title || '';
+      div.dataset.author = book.author || '';
+      div.dataset.genre = book.genre || '';
+      div.dataset.description = book.description || '';
+      div.dataset.cover = '/static/' + (book.cover_url || '');
+      div.dataset.pdf = '/static/' + (book.pdf_url || '');
+      div.dataset.progress = book.progress || 0;
+
+      div.innerHTML = `
+        <img src="/static/${book.cover_url}" alt="${book.title}">
+        <p>${book.title}</p>
+        <small>Progress: ${book.progress || 0}%</small>
+      `;
+      container.appendChild(div);
+    });
+
+  } catch (err) {
+    console.error('loadMyShelf error', err);
+  }
+}
+
+/* wire My Shelf click in DOMContentLoaded (safe binding) */
+document.addEventListener('DOMContentLoaded', () => {
+  const myShelfLink = document.getElementById('my-shelf-link');
+  if (myShelfLink) {
+    myShelfLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      loadMyShelf();
+    });
+  }
+});
+</script>
+
+<script>
+// Global variables
+let pdfDoc = null;
+let scale = 1.2; // starting zoom scale
+const pdfContainer = document.getElementById('pdf-container');
+
+// Open PDF in scrollable mode
+// Open PDF in scrollable mode
+function openPDF(pdfUrl, progress = 0) {
+  document.getElementById('pdf-reader-modal').style.display = 'flex';
+  pdfContainer.innerHTML = ''; // clear previous pages
+
+  pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
+    pdfDoc = pdf;
+    document.getElementById('page-count').textContent = pdfDoc.numPages;
+    renderAllPages();
+
+    // 🔑 Scroll to saved progress
+    if (progress > 0) {
+      const targetPage = Math.max(1, Math.round((progress / 100) * pdfDoc.numPages));
+      setTimeout(() => {
+        scrollToPage(targetPage);
+      }, 500);
+    }
+  });
+}
+
+// Render all pages
+function renderAllPages() {
+  if (!pdfDoc) return;
+  pdfContainer.innerHTML = '';
+  for (let i = 1; i <= pdfDoc.numPages; i++) {
+    pdfDoc.getPage(i).then(page => {
+      const viewport = page.getViewport({ scale: scale });
+      const canvas = document.createElement('canvas');
+      canvas.style.display = 'block';
+      canvas.style.margin = '10px auto';
+      canvas.setAttribute('data-page-number', i); // Assign page number
+      const ctx = canvas.getContext('2d');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+
+      const renderContext = {
+        canvasContext: ctx,
+        viewport: viewport
+      };
+      page.render(renderContext);
+
+      pdfContainer.appendChild(canvas);
+    });
+    
+  }
+  pdfContainer.addEventListener('scroll', () => {
+  const container = pdfContainer;
+  const canvases = container.querySelectorAll('canvas');
+  let closestPage = 1;
+  let minDistance = Infinity;
+
+  canvases.forEach(canvas => {
+    const rect = canvas.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    const distance = Math.abs(rect.top - containerRect.top);
+    if (distance < minDistance) {
+      minDistance = distance;
+      closestPage = parseInt(canvas.getAttribute('data-page-number'));
+    }
+  });
+
+  document.getElementById('page-num').textContent = closestPage;
+  document.getElementById('progress-percent').textContent = Math.round((closestPage / pdfDoc.numPages) * 100);
+
+  saveProgress(currentBookId, Math.round((closestPage / pdfDoc.numPages) * 100));
+});  
+  document.getElementById('zoom-level').textContent = Math.round(scale * 100) + '%';
+}
+
+// Zoom handlers
+document.getElementById('zoom-in').addEventListener('click', () => {
+  scale += 0.2;
+  renderAllPages();
+});
+
+document.getElementById('zoom-out').addEventListener('click', () => {
+  if (scale <= 0.4) return;
+  scale -= 0.2;
+  renderAllPages();
+});
+
+// Close modal
+document.getElementById('pdf-close').addEventListener('click', () => {
+  document.getElementById('pdf-reader-modal').style.display = 'none';
+  pdfContainer.innerHTML = '';
+  scale = 1.5; // reset zoom
+});
+
+// Hook into "Read Book" button
+document.getElementById('modal-pdf').addEventListener('click', function(e) {
+  e.preventDefault();
+  let pdfUrl = this.getAttribute('href');
+   // find the book item element and get its id
+  const modal = document.getElementById('book-modal');
+  const cover = document.getElementById('modal-cover');
+  const title = document.getElementById('modal-title').textContent;
+  openPDF(pdfUrl);
+});
+async function saveProgress(bookId, progress) {
+  if (!bookId) return;
+  try {
+    await fetch('/update_progress', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ book_id: bookId, progress: progress })
+    });
+  } catch (err) {
+    console.error('saveProgress error', err);
+  }
+}
+fetch('/get_progress', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ book_id: currentBookId })
+})
+.then(res => res.json())
+.then(data => {
+  if (data.success) {
+    const progress = data.progress || 0;
+    document.getElementById('progress-percent').textContent = progress;
+    // Optionally scroll to the correct page
+    if (pdfDoc) {
+      const pageNum = Math.round((progress / 100) * pdfDoc.numPages);
+      scrollToPage(pageNum);
+    }
+  } else {
+    console.error('Failed to get progress:', data.message);
+  }
+  function scrollToPage(pageNum) {
+  const canvas = pdfContainer.querySelector(`canvas[data-page-number="${pageNum}"]`);
+  if (canvas) {
+    canvas.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById("page-num").textContent = pageNum;
+    document.getElementById("progress-percent").textContent = Math.round((pageNum / pdfDoc.numPages) * 100);
+  }
+}
+})
+// Handle book search
+
+document.getElementById("search-form").addEventListener("submit", function(e) {
+    e.preventDefault(); // stop default form reload
+
+    const queryInput = document.getElementById("book-search");
+    const query = queryInput.value.trim();
+    if (!query) return;
+
+    fetch(`/search_books?q=${encodeURIComponent(query)}`)
+        .then(res => res.json())
+        .then(data => {
+            const featuredSection = document.getElementById("featured-books");
+            const sectionTitle = document.getElementById("section-title");
+
+            featuredSection.innerHTML = ""; // clear old results
+
+            if (data.success && data.books.length > 0) {
+                sectionTitle.textContent = "Search Results";
+
+                data.books.forEach(book => {
+                    const bookItem = document.createElement("div");
+                    bookItem.classList.add("book-item");
+                    bookItem.setAttribute("onclick", "openBookModal(this)");
+                    bookItem.dataset.id = book.book_id;
+                    bookItem.dataset.title = book.title;
+                    bookItem.dataset.author = book.author;
+                    bookItem.dataset.genre = book.genre;
+                    bookItem.dataset.description = book.description;
+                    bookItem.dataset.cover = book.cover_url;
+                    bookItem.dataset.pdf = book.pdf_url;
+
+                    bookItem.innerHTML = `
+                        <img src="${book.cover_url}" alt="${book.title}">
+                        <p>${book.title}</p>
+                    `;
+
+                    featuredSection.appendChild(bookItem);
+                });
+
+            } else {
+                sectionTitle.textContent = "No Results Found";
+                featuredSection.innerHTML = "<p>No books found for your search.</p>";
+            }
+        })
+        .catch(err => console.error("Search error:", err))
+        .finally(() => {
+            // ✅ always clear the search box after search
+            queryInput.value = "";
+        });
+});
+
+</script>
+<script>
+// Reset Featured Books (from initial server render)
+function loadFeaturedBooks() {
+    const container = document.getElementById("featured-books");
+    const title = document.getElementById("section-title");
+
+    title.textContent = "Featured Books";
+    container.innerHTML = `
+        {% for book in featured_books %}
+         <div class="book-item" onclick="openBookModal(this)" 
+             data-id="{{ book.book_id }}"
+             data-title="{{ book.title }}" 
+             data-author="{{ book.author }}" 
+             data-genre="{{ book.genre }}" 
+             data-description="{{ book.description }}" 
+             data-cover="{{ url_for('static', filename=book.cover_url) }}" 
+             data-pdf="{{ url_for('static', filename=book.pdf_url) }}">
+            <img src="{{ url_for('static', filename=book.cover_url) }}" alt="{{ book.title }}">
+            <p>{{ book.title }}</p>
+        </div>
+        {% endfor %}
+    `;
+}
+
+// Hook Home button
+document.addEventListener("DOMContentLoaded", () => {
+    const homeLink = document.querySelector(".sidebar a[href='#'] i.fas.fa-home")?.parentElement;
+    if (homeLink) {
+        homeLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            loadFeaturedBooks();
+        });
+    }
+    
+});
+</script>
+<script>
+function loadCategories() {
+    const section = document.getElementById("featured-section");
+    const title = document.getElementById("section-title");
+
+    title.textContent = "Explore Categories";
+
+    section.innerHTML = `
+        <h2 id="section-title">Explore Categories</h2>
+        <div id="categories-list" class="categories"></div>
+        <div id="category-books" class="books-grid"></div>
+    `;
+
+    // Fetch categories dynamically
+    fetch("/categories")
+        .then(res => res.json())
+        .then(categories => {
+            const catList = document.getElementById("categories-list");
+            categories.forEach(cat => {
+                const btn = document.createElement("button");
+                btn.className = "category-btn";
+                btn.textContent = cat.name;
+                btn.dataset.id = cat.id;
+
+                // Circle styling
+                btn.style.width = "130px";
+                btn.style.height = "100px";
+                btn.style.borderRadius = "60%";
+                btn.style.margin = "20px";
+                btn.style.fontSize = "22px";
+                btn.style.cursor = "pointer";
+                btn.style.border = "2px solid #333";
+                btn.style.background = "#f5f5f5";
+                
+                // On click load books
+                btn.addEventListener("click", () => {
+                    loadBooksByCategory(cat.id, cat.name);
+                });
+
+                catList.appendChild(btn);
+            });
+        });
+}
+
+// Fetch and display books of that category
+function loadBooksByCategory(categoryId, categoryName) {
+    fetch(`/books/category/${categoryId}`)
+        .then(res => res.json())
+        .then(books => {
+            const booksContainer = document.getElementById("category-books");
+            const sectionTitle = document.getElementById("section-title");
+
+            sectionTitle.textContent = `Category: ${categoryName}`;
+            booksContainer.innerHTML = "";
+
+            if (!books.length) {
+                booksContainer.innerHTML = "<p>No books found in this category.</p>";
+                return;
+            }
+
+            books.forEach(book => {
+                const div = document.createElement("div");
+                div.className = "book-item";
+                div.setAttribute("onclick","openBookModal(this)");
+                div.dataset.id = book.book_id;
+                div.dataset.title = book.title;
+                div.dataset.author = book.author;
+                div.dataset.genre = book.genre;
+                div.dataset.description = book.description;
+                div.dataset.cover = `/static/${book.cover_url}`;
+                div.dataset.pdf = `/static/${book.pdf_url}`;
+
+                div.innerHTML = `
+                    <img src="/static/${book.cover_url}" alt="${book.title}">
+                    <p>${book.title}</p>
+                `;
+                booksContainer.appendChild(div);
+            });
+        });
+}
+
+// Hook Explore link
+document.addEventListener("DOMContentLoaded", () => {
+    const exploreLink = document.getElementById("explore-link");
+    if (exploreLink) {
+        exploreLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            loadCategories();
+        });
+    }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const featuredSection = document.getElementById('featured-section');
+  const booksGrid = document.getElementById('books-grid');
+
+  if (!featuredSection || !booksGrid) {
+    console.error('Required elements missing: featured-section or books-grid');
+    return;
+  }
+
+  // Save the original HTML produced by the server (safe and robust)
+  const initialFeaturedHTML = featuredSection.innerHTML;
+  const initialBooksGridHTML = booksGrid.innerHTML;
+  const initialSectionTitle = document.getElementById('section-title') ?
+                              document.getElementById('section-title').textContent : 'Featured Books';
+
+  // Re-initialize handlers after replacing DOM
+  function reInitHandlers() {
+    // close modal (override using onclick to avoid duplicate listeners)
+    const modalClose = document.getElementById('modal-close');
+    if (modalClose) modalClose.onclick = () => { document.getElementById('book-modal').style.display = 'none'; };
+
+    // "Read Book" inside modal (open embedded PDF)
+    const modalPdf = document.getElementById('modal-pdf');
+    if (modalPdf) modalPdf.onclick = function(e) { 
+      e.preventDefault();
+      const url = this.getAttribute('href');
+      if (url) openPDF(url);
+    };
+
+    // Add to shelf button inside modal
+    const addBtn = document.getElementById('add-to-shelf');
+    if (addBtn) addBtn.onclick = () => addToShelf(currentBookId);
+
+    // My Shelf link
+    const myShelfLink = document.getElementById('my-shelf-link');
+    if (myShelfLink) myShelfLink.onclick = (e) => { e.preventDefault(); loadMyShelf(); };
+
+    // Ensure each .book-item will open modal (covers both inline onclick and JS-attached)
+    document.querySelectorAll('.book-item').forEach(item => {
+      // if there is already an inline onclick attribute we leave it; otherwise attach once
+      if (!item.getAttribute('onclick')) item.onclick = function() { openBookModal(this); };
+    });
+  }
+
+  // Home click: restore original sections and remove category UI
+  const homeLink = document.getElementById('home-link');
+  if (homeLink) {
+    homeLink.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // restore server-rendered sections (removes category circles/books)
+      featuredSection.innerHTML = initialFeaturedHTML;
+      booksGrid.innerHTML = initialBooksGridHTML;
+
+      // restore title
+      const sectionTitle = document.getElementById('section-title');
+      if (sectionTitle) sectionTitle.textContent = initialSectionTitle;
+
+      // remove any leftover category containers (if loadCategories added them)
+      const catList = document.getElementById('categories-list');
+      if (catList) catList.remove();
+      const catBooks = document.getElementById('category-books');
+      if (catBooks) catBooks.remove();
+
+      // reattach handlers to the restored DOM
+      reInitHandlers();
+    });
+  }
+
+  // Run initial handler binding (for page load)
+  reInitHandlers();
+});
+</script>
+<script>
+async function loadReadingTracker() {
+  const res = await fetch("/my_shelf"); 
+  const data = await res.json();
+  if (!data.success) return;
+
+  const books = data.books || [];
+
+  const progressContainer = document.getElementById("progress-books");
+  const recentContainer = document.getElementById("recent-books");
+  const completedContainer = document.getElementById("completed-books");
+
+  progressContainer.innerHTML = "";
+  recentContainer.innerHTML = "";
+  completedContainer.innerHTML = "";
+
+  // Sort by started_at
+  const sortedBooks = books.sort((a, b) => new Date(b.started_at) - new Date(a.started_at));
+
+  // Recently Read (last 5)
+  sortedBooks.slice(0, 5).forEach(book => {
+    recentContainer.innerHTML += `
+      <div class="tracker-book">
+        <img src="/static/${book.cover_url}" alt="${book.title}">
+        <p>${book.title}</p>
+      </div>
+    `;
+  });
+
+  // Books in Progress
+  books.filter(b => b.progress > 0 && b.progress < 100).forEach(book => {
+    progressContainer.innerHTML += `
+      <div class="tracker-book">
+        <img src="/static/${book.cover_url}" alt="${book.title}">
+        <p>${book.title}</p>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:${book.progress}%;"></div>
+        </div>
+        <small>${book.progress}% completed</small><br>
+        <button class="continue-btn" 
+                data-id="${book.book_id}" 
+                data-pdf="/static/${book.pdf_url}" 
+                data-progress="${book.progress}">
+          ▶️ Continue Reading
+        </button>
+      </div>
+    `;
+  });
+
+  // Completed Books
+  books.filter(b => b.progress >= 100).forEach(book => {
+    completedContainer.innerHTML += `
+      <div class="tracker-book">
+        <img src="/static/${book.cover_url}" alt="${book.title}">
+        <p>${book.title}</p>
+        <small>✅ Finished</small>
+      </div>
+    `;
+  });
+
+  // 🔑 Attach event listener for Continue Reading buttons
+  document.querySelectorAll(".continue-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const bookId = btn.dataset.id;
+      const pdfUrl = btn.dataset.pdf;
+      const progress = parseInt(btn.dataset.progress || "0");
+
+      currentBookId = bookId; // store global bookId
+      openPDF(pdfUrl, progress); // call your existing PDF viewer with progress
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const trackerLink = document.getElementById("reading-tracker-link");
+  if (trackerLink) {
+    trackerLink.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // Hide Featured + All Books
+      document.getElementById("featured-section").style.display = "none";
+      document.querySelector(".all-books-section").style.display = "none";
+
+      // Show Tracker
+      document.getElementById("reading-tracker").style.display = "block";
+
+      // Load data
+      loadReadingTracker();
+    });
+  }
+});
+</script>
+
+<script>
+document.getElementById("profile-link").addEventListener("click", (e) => {
+  e.preventDefault();
+
+  // Hide other sections
+  document.getElementById("featured-section").style.display = "none";
+  document.querySelector(".all-books-section").style.display = "none";
+  document.getElementById("reading-tracker").style.display = "none";
+
+  // Show Profile
+  document.getElementById("profile-section").style.display = "block";
+  loadFavourites();
+});
+
+document.getElementById("home-link").addEventListener("click", (e) => {
+  e.preventDefault();
+
+  // Hide profile & tracker
+  document.getElementById("profile-section").style.display = "none";
+  document.getElementById("reading-tracker").style.display = "none";
+
+  // Show featured & all books
+  document.getElementById("featured-section").style.display = "block";
+  document.querySelector(".all-books-section").style.display = "block";
+});
+
+document.getElementById("tracker-link").addEventListener("click", (e) => {
+  e.preventDefault();
+
+  document.getElementById("featured-section").style.display = "none";
+  document.querySelector(".all-books-section").style.display = "none";
+  document.getElementById("profile-section").style.display = "none";
+
+  document.getElementById("reading-tracker").style.display = "block";
+});
+
+document.addEventListener("click", function(e) {
+  if (e.target.classList.contains("continue-btn")) {
+    const bookId = e.target.dataset.id;
+    const pdfUrl = e.target.dataset.pdf;
+    currentBookId = bookId; // keep global tracking
+
+    // Fetch saved progress for this book
+    fetch("/get_progress", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ book_id: bookId })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        openPDF(pdfUrl);
+
+        // After rendering, scroll to saved page
+        setTimeout(() => {
+          const pageNum = Math.round((data.progress / 100) * pdfDoc.numPages);
+          if (pageNum > 0) scrollToPage(pageNum);
+        }, 1000);
+      }
+    });
+  }
+});
+</script>
+<script>
+function toggleFavourite(event, bookId) {
+  event.stopPropagation();
+  const btn = event.target;
+
+  fetch("/add_favourite", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ book_id: bookId })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success || data.message === "Book already in favourites") {
+      // Mark heart red immediately
+      btn.textContent = "❤️";
+      btn.disabled = true;
+
+      // ✅ Refresh favourites list immediately
+      loadFavourites(true);
+    }
+  });
+}
+
+function loadFavourites(updateUI = false) {
+  fetch("/get_favourites")
+    .then(res => res.json())
+    .then(data => {
+      const favIds = data.books.map(b => b.book_id);
+
+      // ✅ Update Featured hearts instantly
+      highlightFavouritedHearts(favIds);
+
+      // ✅ If Profile section exists, update it (even if hidden)
+      const container = document.getElementById("favourite-books");
+      if (container) {
+        container.innerHTML = "";
+
+        if (!data.books || data.books.length === 0) {
+          container.innerHTML = "<p>No favourites yet.</p>";
+        } else {
+          data.books.forEach(book => {
+            const div = document.createElement("div");
+            div.className = "fav-book-card";
+            div.onclick = () => window.open(book.pdf_url, "_blank");
+
+            div.innerHTML = `
+              <img src="/static/${book.cover_url}" alt="${book.title}">
+              <div class="fav-book-info">
+                <h4>${book.title}</h4>
+                <p>${book.author}</p>
+              </div>
+            `;
+            container.appendChild(div);
+          });
+        }
+      }
+    });
+}
+
+function highlightFavouritedHearts(favIds) {
+  favIds.forEach(id => {
+    const btn = document.querySelector(`.fav-btn[data-id='${id}']`);
+    if (btn) {
+      btn.textContent = "❤️";
+      btn.disabled = true; // keep it red and locked
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Always sync favourites on load
+  loadFavourites();
+
+  const profileLink = document.getElementById("profile-link");
+  if (profileLink) {
+    profileLink.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // Hide other sections
+      document.getElementById("featured-section").style.display = "none";
+      document.querySelector(".all-books-section").style.display = "none";
+      document.getElementById("reading-tracker").style.display = "none";
+
+      // Show Profile
+      document.getElementById("profile-section").style.display = "block";
+
+      // ✅ Ensure it’s refreshed when opening Profile
+      loadFavourites(true);
+    });
+  }
+});
+</script>
+<script>
+  document.getElementById("logout-link").addEventListener("click", (e) => {
+  e.preventDefault();
+  window.location.href = "/logout"; // go to logout route
+});
+
+</script>
+<script>
+function showProfile() {
+  // Hide other sections
+  document.getElementById("dashboard-section")?.style.display = "none";
+  document.getElementById("featured-section")?.style.display = "none";
+  
+  // Show profile
+  document.getElementById("profile-section").style.display = "block";
+}
+function closeProfile() {
+  // hide profile
+  document.getElementById("profile-section").style.display = "none";
+
+  // show featured and all books
+  const featured = document.getElementById("featured-section");
+  const allBooks = document.querySelector(".all-books-section");
+
+  if (featured) {
+    featured.style.display = "block";
+    loadFeaturedBooks();   // 🔑 restore content
+  }
+  if (allBooks) allBooks.style.display = "block";
+}
+</script>
+
+<script>
+function openEditProfile() {
+  document.getElementById("edit-profile-modal").style.display = "flex";
+}
+function closeEditProfile() {
+  document.getElementById("edit-profile-modal").style.display = "none";
+}
+</script>
+<script>
+let lastSection = "dashboard-section";  // default
+
+function showSection(sectionId) {
+  const sections = [
+    "dashboard-section",
+    "featured-section",
+    "my-shelf-section",
+    "profile-section"
+  ];
+
+  // if navigating to profile, remember the current visible section
+  if (sectionId === "profile-section") {
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.style.display !== "none" && id !== "profile-section") {
+        lastSection = id; // store the currently visible section
+      }
+    });
+  }
+
+  // show only the target section
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.style.display = (id === sectionId) ? "block" : "none";
+    }
+  });
+}
+
+function closeProfile() {
+  // Hide profile
+  document.getElementById("profile-section").style.display = "none";
+
+  // Show featured + all books
+  document.getElementById("featured-section").style.display = "block";
+  document.querySelector(".all-books-section").style.display = "block";
+
+  // 🔑 Reset the same way Home button does
+  if (typeof loadFeaturedBooks === "function") {
+    loadFeaturedBooks();
+  }
+}
+</script>
+
+
+
+</body>
+</html>

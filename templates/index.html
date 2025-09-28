@@ -1,133 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>E-Book Shelf</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    
-</head>
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='all.min.css') }}">
 <body>
-    
     <header>
         <div class="navbar">
             <div class="nav-logo border">
-               
                 <div class="logo">
-                    <img src="{{ url_for('static', filename='logo3.jpeg') }}" alt="Logo">
+                    <img src="{{ url_for('static', filename='logolight.png') }}" alt="Logo">
                     <div class="logo-text">
-                         
-                        <span class="top-text">E-book</span><br>
+                        <span class="top-text">E-book</span><br />
                         <span class="bottom-text">Shelf</span>
-                       
                     </div>
-                
                 </div>
-                
             </div>
-            <div class="header-right">
-            <div class="dropdown">
-            <button class="dropbtn">Browse ▼</button>
-            <div class="dropdown-content">
-                <a href="#">Romance</a>
-                <a href="#">Fantasy</a>
-                <a href="#">Historical Fiction</a>
-                <a href="#">Humor</a>
-                <a href="#">Science Fiction</a>
-                <a href="#">Non-Fiction</a>
-                <a href="#">Short Story</a>
-                <a href="#">Paranormal</a>
-                <a href="#">Horror</a>
-                <a href="#">Mystery</a>
-                <a href="#">Poetry</a>
-                <a href="#">New Adult</a>
-                <a href="#">Teen Fiction</a>
-                <a href="#">Thriller</a>
-                <a href="#">Adventure</a>
-            </div>
+            
+               
+                <button id="login_button">Login</button>
         </div>
-
-        <div class="container">
-  <div class="search-box">
-    <i class="fas fa-search"></i>
-    <input type="text" placeholder="Search...">
-  </div>
-</div>
-
-        <button class="signup">Sign Up</button>
-        <button id="login_button">Login</button>
-    </div>
-        </div>
-    
     </header>
+    <section class="hero-section">
+
     <div class="merge">
-   <div class="about">
-     <p style="font-size: 35px;"><h1>Welcome to E-Book Shelf!! </h1><br>
-    Your digital companion for everything books!<br>
-    E-Book Shelf is your all-in-one platform for discovering, tracking, and enjoying books. Whether you're a casual reader or a bookworm, we help you organize your digital shelf, track your reading progress, and explore personalized book recommendations.
-    <br>
-<br>
-   Our mission is to make reading more accessible and enjoyable for everyone. With the use of advanced AI .
-Join a growing community of readers and take your reading journey to the next level!
-</p>
-    </div>
- 
-    <div class ="content"> 
-       <img src="{{ url_for('static', filename='banner.jpeg') }}">
-    </div>
-    </div>
-
-    <section class="hero">
-  <h1>Your Personal eBook Haven</h1>
-  <p>Browse thousands of titles by genre. Save, read, and track progress.</p>
-  <br><br>
-  <div class="hero-btn">
-    <button class="browse-btn">
-        <i class="fas fa-search"></i> Browse stories
-    </button>
-</div>
-</section>
-
-    <section class="features">
-    <h2>Enhance Your Reading Journey</h2>
-    <div class="feature-container">
-        <div class="feature">
-            <span class="icon">📚</span>
-            <p>Discover New Books</p>
-        </div>
-        <div class="feature">
-            <span class="icon">📖</span>
-            <p>Track Your Reading</p>
-        </div>
-        <div class="feature">
-            <span class="icon">💬</span>
-            <p>Join the Community</p>
-        </div>
-    </div>
-</section>
-
-  <!-- Login Popup -->
-  <div class="modal" id="login-content">
-    <div class="modal-box">
-      <button class="close-btn" id="login-close">&times;</button>
-      <h2>Login</h2>
-
-      <label for="login-email">Email</label>
-      <input type="email" id="login-email" placeholder="Enter your email" required>
-
-      <label for="login-pass">Password</label>
-      <input type="password" id="login-pass" placeholder="Enter your password" required>
-
-      <button class="login-btn" id="do-login">Login</button>
-      <div class="divider">
-        <span>or</span>
-      </div>
-      <a href="#" class="forgot">Forgot Password?</a>
-      <p>Don't have an account? <a href="#" id="signup-link">Sign up</a></p>
-    </div>
+        <div class="slider">
+  <div class="slides" id="slides">
+    <img src="{{ url_for('static', filename='slider1.png') }}" alt="Banner 1">
+    <img src="{{ url_for('static', filename='slider2.png') }}" alt="Banner 2">
+    <img src="{{ url_for('static', filename='slider3.png') }}" alt="Banner 3">
+    <img src="{{ url_for('static', filename='slider4.png') }}" alt="Banner 4">
+    <img src="{{ url_for('static', filename='slider5.png') }}" alt="Banner 5">
   </div>
-  
+   <span class="arrow left" onclick="prevSlide()">&#10094;</span>
+    <span class="arrow right" onclick="nextSlide()">&#10095;</span>
+     <div class="dots" id="dots"></div>
 </div>
-<script src="{{ url_for('static', filename='main.js') }}"></script>
+        <div class="about">
+            <h1>Welcome to E-Book Shelf!!</h1>
+            <p>Discovern thousands of e-books across every genre<br> Your next great read is just a click away</p>
+        </div>
+    </div>
+    
+    <section class="features">
+        <h2>Enhance Your Reading Journey</h2>
+        <div class="feature-container">
+            <div class="feature">
+                <span class="icon">📚</span>
+                <p>Discover New Books</p>
+            </div>
+            <div class="feature">
+                <span class="icon">📖</span>
+                <p>Track Your Reading</p>
+            </div>
+            <div class="feature">
+                <span class="icon">💬</span>
+                <p>Join the Community</p>
+            </div>
+        </div>
+    </section>
+</section>
+    <!-- Login Popup -->
+    <div class="modal" id="login-content">
+        <div class="modal-box">
+            <button class="close-btn" id="login-close">&times;</button>
+            <h2>Login</h2>
+             <div id="loginError" class="error" style="display:none;"></div>
+            <form method="POST" action="/login">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" name="email" placeholder="Enter your email" required />
+
+                <label for="login-pass">Password</label>
+                <input type="password" id="login-pass" name="password" placeholder="Enter your password" required />
+
+                <button class="login-btn" id="do-login">Login</button>
+            </form>
+            <div class="divider"><span>or</span></div>
+            <a href="#" class="forgot">Forgot Password?</a>
+            <p>Don’t have an account? <a href="#" onclick="closeLogin(); openSignup();">Sign Up</a></p>
+        </div>
+    </div>
+
+    <!-- Signup Popup -->
+    <div class="modal" id="signup-content">
+        <div class="modal-box">
+            <button class="close-btn" id="signup-close">&times;</button>
+            <h2>Sign Up</h2>
+            <form method="POST" action="/signup">
+                <label for="signup-username">Username</label>
+                <input type="text" id="signup-username" name="username" placeholder="Enter your username" required />
+
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" name="email" placeholder="Enter your email" required />
+
+                <label for="signup-pass">Password</label>
+                <input type="password" id="signup-pass" name="password" placeholder="Enter your password" required />
+
+                <label for="signup-confirm">Confirm Password</label>
+                <input type="password" id="signup-confirm" name="confirm_password" placeholder="Confirm your password" required />
+               
+                <button class="login-btn" id="do-signup">Sign Up</button>
+            </form>
+            <div class="divider"><span>or</span></div>
+            <p>Already have an account? <a href="#" onclick="closeSignup(); openLogin();">Login</a></p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+     
+  <script>
+    const slides = document.getElementById("slides");
+    const totalSlides = slides.children.length;
+    let index = 0;
+    let autoPlay;
+
+    const dotsContainer = document.getElementById("dots");
+
+    // Create dots dynamically
+    for (let i = 0; i < totalSlides; i++) {
+      let dot = document.createElement("span");
+      dot.classList.add("dot");
+      dot.onclick = () => goToSlide(i);
+      dotsContainer.appendChild(dot);
+    }
+
+    const dots = document.querySelectorAll(".dot");
+    dots[0].classList.add("active");
+
+    function updateSlider() {
+      slides.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach(dot => dot.classList.remove("active"));
+      dots[index].classList.add("active");
+    }
+
+    function nextSlide() {
+      index = (index + 1) % totalSlides;
+      updateSlider();
+      resetAutoPlay();
+    }
+
+    function prevSlide() {
+      index = (index - 1 + totalSlides) % totalSlides;
+      updateSlider();
+      resetAutoPlay();
+    }
+
+    function goToSlide(i) {
+      index = i;
+      updateSlider();
+      resetAutoPlay();
+    }
+
+    function startAutoPlay() {
+      autoPlay = setInterval(nextSlide, 5000); // 5 seconds
+    }
+
+    function resetAutoPlay() {
+      clearInterval(autoPlay);
+      startAutoPlay();
+    }
+
+    // Start slider
+    startAutoPlay();
+</script>
+
 </body>
 </html>
